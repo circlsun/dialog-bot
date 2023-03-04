@@ -29,7 +29,7 @@ def help_command(update: Update, context: CallbackContext):
     update.message.reply_text('Help!')
 
 
-def echo(update: Update, context: CallbackContext):
+def send_message(update: Update, context: CallbackContext):
     """Echo the user message."""
     update.message.reply_text(detect_intent_texts(update.message.text))
 
@@ -42,7 +42,7 @@ def main():
 
     dispatcher.add_handler(CommandHandler("start", start))
     dispatcher.add_handler(CommandHandler("help", help_command))
-    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, echo))  # noqa
+    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, send_message))  # noqa
 
     updater.start_polling()
     updater.idle()
