@@ -31,7 +31,8 @@ def help_command(update: Update, context: CallbackContext):
 
 def send_message(update: Update, context: CallbackContext):
     """Echo the user message."""
-    update.message.reply_text(detect_intent_texts(update.message.text))
+    if detect_intent_texts(update.message.text) != '<is_fallback>':
+        update.message.reply_text(detect_intent_texts(update.message.text))
 
 
 def main():

@@ -19,4 +19,7 @@ def detect_intent_texts(texts, language_code='RU'):
             'query_input': query_input
         }
     )
-    return response.query_result.fulfillment_text
+    if response.query_result.intent.is_fallback is False:
+        return response.query_result.fulfillment_text
+    else:
+        return '<is_fallback>'
